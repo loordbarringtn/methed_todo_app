@@ -1,5 +1,7 @@
 import {render} from "./createElements.js";
 import {showModal} from "./modal.js";
+import * as modalListeners from "./modalListeners.js";
+
 
 const start = () => {
   showModal();
@@ -15,6 +17,7 @@ const start = () => {
     console.log('fff');
 
   };
+  
   
   window.start = start;
   

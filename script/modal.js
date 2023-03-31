@@ -66,3 +66,5 @@ export const showModal = () => {
   modalDiv.style.display = "block";
   modalContentDiv.style.display = "block";
 };
+
+export {modalDiv};
