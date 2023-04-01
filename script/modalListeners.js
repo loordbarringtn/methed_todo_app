@@ -1,7 +1,9 @@
+import { modalDiv } from "./modal.js";
+import { render } from "./createElements.js";
+
 const submButton = document.getElementById("modalSubmitBtn");
 const nameInput = document.getElementById("nameInput");
 const closeButton = document.querySelector(".close");
-import { modalDiv } from "./modal.js";
 
 nameInput.addEventListener("input", (e) => {
   let inputVal = e.target.value;
@@ -22,3 +24,10 @@ window.addEventListener("click", (e) => {
   }
 });
 
+submButton.addEventListener("click", () => {
+  const inputValue = nameInput.value;
+  console.log(inputValue);
+  modalDiv.style.display = "none";
+  render();
+
+});

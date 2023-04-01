@@ -9,18 +9,6 @@ function addClasses(element, classes) {
   });
 }
 
-const createTableWrapper = () => {
-  const div = document.createElement("div");
-  addClasses(div, "table-wrapper");
-  return div;
-};
-
-const createHeader = (text) => {
-  const header = document.createElement("h3");
-  header.textContent = text;
-  return header;
-};
-
 const createLabel = () => {
   const label = document.createElement("label");
   addClasses(label, ["form-group", "me-3", "mb-0"]);
@@ -40,6 +28,45 @@ const createButton = (buttonType, className, text) => {
   return button;
 };
 
+const createForm = () => {
+  const form = document.createElement("form");
+  addClasses(form, ["d-flex", "align-items-center", "mb-3"]);
+  form.append(createLabel());
+  form.append(createButton("submit", ["btn", "btn-primary", "me-3"], "Сохранить"));
+  form.append(createButton("reset", ["btn", "btn-warning"], "Очистить"));
+  return form;
+};
+
+const createHeader = (text) => {
+  const header = document.createElement("h3");
+  header.textContent = text;
+  return header;
+};
+
+addClasses(firstDiv, [
+  "app-container",
+  "vh-100",
+  "w-100",
+  "d-flex",
+  "align-items-center",
+  "justify-content-center",
+  "flex-column",
+]);
+
+
+
+const createTableWrapper = () => {
+  const div = document.createElement("div");
+  addClasses(div, "table-wrapper");
+  return div;
+};
+
+
+
+
+
+
+
 const createTable = () => {
   const table = document.createElement("table");
   addClasses(table, ["table", "table-hover", "table-bordered"]);
@@ -56,23 +83,29 @@ const createTable = () => {
   th4.textContent = "Действия";
   thead.append(tr);
   tr.append(th1, th2, th3, th4);
-  // table.append(createTableHeader());
-  // table.append(createTableBody());
-  // div.append(table);
-
-  
-
   table.append(thead, tbody);
   return table;
 };
 
-const createForm = () => {
-  const form = document.createElement("form");
-  addClasses(form, ["d-flex", "align-items-center", "mb-3"]);
-  form.append(createLabel());
-  form.append(createButton("submit", ["btn", "btn-primary", "me-3"], "Сохранить"));
-  form.append(createButton("reset", ["btn", "btn-warning"], "Очистить"));
-  return form;
+
+
+const createTableRows = () => {
+  const tableRow = document.createElement("tr");
+  addClasses(tableRow, ["table-light"]);
+  const td1 = document.createElement("td");
+  td1.textContent = "1";
+  const td2 = document.createElement("td");
+  addClasses(td2, "task");
+  td2.textContent = "Купить слона";
+  const td3 = document.createElement("td");
+  td3.textContent = "В процессе";
+  const td4 = document.createElement("td");
+  const deleteButton = createButton("button", ["btn", "btn-danger"], " Удалить ");
+  const finishButton = createButton("button", ["btn", "btn-success"], " Завершить ");
+  td4.append(deleteButton, finishButton);
+  tableRow.append(td1, td2, td3, td4);
+
+  return tableRow;
 };
 
 
@@ -81,21 +114,16 @@ const createForm = () => {
 
 
 export const render = () => {
-  addClasses(firstDiv, [
-    "app-container",
-    "vh-100",
-    "w-100",
-    "d-flex",
-    "align-items-center",
-    "justify-content-center",
-    "flex-column",
-  ]);
   firstDiv.append(createHeader("Todo App"));
   firstDiv.append(createForm());
-
   const tableWrapper = createTableWrapper();
   firstDiv.append(tableWrapper);
   tableWrapper.append(createTable());
+  const tbodySelector = document.querySelector("tbody");
+  tbodySelector.append(createTableRows());
+
+
+
 
 
 
