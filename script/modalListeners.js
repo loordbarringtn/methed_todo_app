@@ -1,4 +1,4 @@
-import { modalDiv } from "./modal.js";
+import { modalDiv, showModal } from "./modal.js";
 import { render } from "./createElements.js";
 
 const submButton = document.getElementById("modalSubmitBtn");
@@ -19,9 +19,16 @@ closeButton.addEventListener("click", () => {
 });
 
 window.addEventListener("click", (e) => {
+
   if (e.target === modalDiv) {
-    modalDiv.style.display = "none";
-  }
+    if(nameInput.value !== "") {
+      modalDiv.style.display = "none";
+
+    }
+    // modalDiv.style.display = "none";
+    // showModal();
+
+  } 
 });
 
 submButton.addEventListener("click", () => {

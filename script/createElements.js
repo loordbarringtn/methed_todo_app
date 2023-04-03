@@ -1,6 +1,5 @@
 
 const firstDiv = document.querySelector(".app-container");
-const tbodySelector = document.querySelector("tbody");
 
 
 function addClasses(element, classes) {
@@ -82,15 +81,16 @@ const createTable = () => {
   return table;
 };
 
-const createTableRows = () => {
-  
+const createTableRows = (taskValue) => {
+  const tbodySelector = document.querySelector("tbody");
+
   const tableRow = document.createElement("tr");
   addClasses(tableRow, ["table-light"]);
   const td1 = document.createElement("td");
   td1.textContent = "1";
   const td2 = document.createElement("td");
   addClasses(td2, "task");
-  td2.textContent = "Купить слона";
+  td2.textContent = taskValue;
   const td3 = document.createElement("td");
   td3.textContent = "В процессе";
   const td4 = document.createElement("td");
@@ -99,7 +99,7 @@ const createTableRows = () => {
   td4.append(deleteButton, finishButton);
   tableRow.append(td1, td2, td3, td4);
 
-  tbody.addClasses(tableRow);
+  tbodySelector.append(tableRow);
   
   return tableRow;
 };
@@ -121,7 +121,7 @@ const render = () => {
 const saveButton = document.querySelector(".btn-primary");
 const taskInput = document.querySelector(".form-control");
 
-export {render, saveButton, taskInput};
+export {render, saveButton, taskInput, createTableRows};
 
 // export {render};
 

@@ -1,3 +1,6 @@
+import { createTableRows } from "./createElements.js";
+
+
 // import { taskInput, saveButton } from "./createElements.js";
 
 // document.addEventListener("DOMContentLoaded", () => {
@@ -38,11 +41,33 @@
 // const saveButton = document.querySelector(".btn-primary");
 // const taskInput = document.querySelector(".form-control");
 
-document.addEventListener("DOMContentLoaded", () => {
-const saveButton = document.querySelector(".btn-primary");
-const taskInput = document.querySelector(".form-control");
+
+// const deleteButton = () => {
+//   const deleteButton = document.querySelectorAll(".btn-danger");
+//   if (deleteButton===null) return; 
+//   deleteButton.forEach((button) => {
+  
+//     button.addEventListener("click", (e) => {
+//       e.preventDefault();
+//       e.target.closest("tr").remove();
+//     });
+//   });
+
+
+
+// };
+
+const controll = () => {
+  const saveButton = document.querySelector(".btn-primary");
+  const taskInput = document.querySelector(".form-control");
+  const clearButton = document.querySelector(".btn-warning");
+  document.querySelector('.app-container').addEventListener('click', (e) => {
+    const target = e.target;
+    if (target.classList.contains('btn-danger')) {
+      target.closest('tr').remove();
+    }
+  });
   taskInput.addEventListener("input", (e) => {
-    e.preventDefault();
     let taskInput = e.target.value;
     if (taskInput === "") {
       saveButton.disabled = true;
@@ -50,7 +75,59 @@ const taskInput = document.querySelector(".form-control");
       saveButton.disabled = false;
     }
   });
-});
+
+  saveButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const taskValue = taskInput.value;
+    createTableRows(taskValue);
+    taskInput.value = "";
+    saveButton.disabled = true;
+
+    // deleteButton();
+
+
+  });
+
+  clearButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    taskInput.value = "";
+  });
+
+  // const deleteButton = document.querySelector(".btn-danger");
+  // debugger
+
+
+
+
+  // deleteButton.addEventListener("click", (e) => {
+  //   e.preventDefault();
+  //   e.target.closest("tr").remove();
+
+  // });
+
+
+
+};
+
+
+function deleteButton ()  {
+  const deleteButton = document.querySelectorAll(".btn-danger");
+  if (deleteButton===null) return; 
+  deleteButton.forEach((button) => {
+  
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.target.closest("tr").remove();
+    });
+  });
+ }
+
+
+
+// export { deleteButton };
+
+export { deleteButton, controll};
+
 
 
 

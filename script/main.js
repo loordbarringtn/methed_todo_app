@@ -8,6 +8,9 @@ const start = () => {
   showModal();
   render();
 
+  tableListeners.controll();
+  // tableListeners.deleteButton();
+
 
 
   };
