@@ -1,4 +1,7 @@
+
 const firstDiv = document.querySelector(".app-container");
+const tbodySelector = document.querySelector("tbody");
+
 
 function addClasses(element, classes) {
   if (!Array.isArray(classes)) {
@@ -53,19 +56,11 @@ addClasses(firstDiv, [
   "flex-column",
 ]);
 
-
-
 const createTableWrapper = () => {
   const div = document.createElement("div");
   addClasses(div, "table-wrapper");
   return div;
 };
-
-
-
-
-
-
 
 const createTable = () => {
   const table = document.createElement("table");
@@ -87,9 +82,8 @@ const createTable = () => {
   return table;
 };
 
-
-
 const createTableRows = () => {
+  
   const tableRow = document.createElement("tr");
   addClasses(tableRow, ["table-light"]);
   const td1 = document.createElement("td");
@@ -105,29 +99,32 @@ const createTableRows = () => {
   td4.append(deleteButton, finishButton);
   tableRow.append(td1, td2, td3, td4);
 
+  tbody.addClasses(tableRow);
+  
   return tableRow;
 };
 
-
-
-
-
-
-export const render = () => {
+const render = () => {
   firstDiv.append(createHeader("Todo App"));
   firstDiv.append(createForm());
+  document.querySelector(".btn-primary").disabled = true;
   const tableWrapper = createTableWrapper();
   firstDiv.append(tableWrapper);
   tableWrapper.append(createTable());
-  const tbodySelector = document.querySelector("tbody");
-  tbodySelector.append(createTableRows());
-
-
-
-
-
-
-
-
+  
+  // tbodySelector.append(createTableRows());
 
 };
+
+
+
+const saveButton = document.querySelector(".btn-primary");
+const taskInput = document.querySelector(".form-control");
+
+export {render, saveButton, taskInput};
+
+// export {render};
+
+
+
+

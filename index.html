@@ -9,15 +9,14 @@
 <title>ToDo</title>
 </head>
 <body>
-  <script type="module" src="./script/main.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    start();
-  });
-</script>
-
+  <script type="module" src="./script/main.js" defer></script>
   <div class="app-container">
-
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      start();
+    }); 
+  </script>
 </body>
 </html>

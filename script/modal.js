@@ -1,3 +1,5 @@
+import {render} from "./createElements.js";
+
 const modalDiv = document.createElement("div");
 modalDiv.setAttribute("class", "modal");
 modalDiv.setAttribute("id", "myModal");
@@ -65,6 +67,26 @@ document.body.append(modalDiv);
 export const showModal = () => {
   modalDiv.style.display = "block";
   modalContentDiv.style.display = "block";
+//   document.addEventListener("submit", (e) => {
+//     e.preventDefault();
+
+//   //     const saveButton = document.querySelector(".btn-primary");
+//   //     const taskInput = document.querySelector(".form-control");
+//   //     taskInput.addEventListener("input", (e) => {
+//   //       let taskInput = e.target.value;
+//   //       if (taskInput === "") {
+//   //         saveButton.disabled = true;
+//   //       } else {
+//   //         saveButton.disabled = false;
+//   //       }
+//   //     });
+
+//   // })
+//   render();
+
 };
+
+
+
 
 export {modalDiv};

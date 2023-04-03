@@ -28,6 +28,11 @@ submButton.addEventListener("click", () => {
   const inputValue = nameInput.value;
   console.log(inputValue);
   modalDiv.style.display = "none";
-  render();
-
+  // render();
 });
+
+// render();
+
+
+
+
