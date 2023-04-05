@@ -19,7 +19,7 @@ const removeStorage = (key, phoneNumber) => {
   localStorage.setItem(key, JSON.stringify(dataFiltered));
 };
 
-export default {
+export {
   getStorage,
   setStorage,
   removeStorage,
