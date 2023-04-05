@@ -1,5 +1,5 @@
 import { modalDiv } from "./modal.js";
-import { getStorage, setStorage, removeStorage } from "./localStorage.js";
+import { getStorage } from "./localStorage.js";
 import { createTableRows } from "./createElements.js";
 
 const submButton = document.getElementById("modalSubmitBtn");
@@ -20,24 +20,13 @@ const modalControll = () => {
     const target = e.target;
 
     if (target === submButton) {
-      // const inputValue = nameInput.value;
       inputValue = nameInput.value;
       modalDiv.style.display = "none";
-
-
-
-
-      const dataToRender = getStorage(inputValue);
-      console.log(dataToRender)
-      dataToRender.forEach((item) => {
+      const dataFromLocalStorage = getStorage(inputValue);
+      console.log(dataFromLocalStorage)
+      dataFromLocalStorage.forEach((item) => {
         createTableRows(item);
-        
-        
-
       });
-
-
-
     }
 
     if (target.classList.contains("close")) {

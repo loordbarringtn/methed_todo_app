@@ -1,7 +1,11 @@
 
 const firstDiv = document.querySelector(".app-container");
-const status = ["В процессе", "Выполнено"];
+const taskStatus = [
+  'В процессе',
+  'Выполнена',
+];
 
+const status = ["В процессе", "Выполнено"];
 
 function addClasses(element, classes) {
   if (!Array.isArray(classes)) {
@@ -82,18 +86,18 @@ const createTable = () => {
   return table;
 };
 
-const createTableRows = (taskValue) => {
+const createTableRows = (object) => {
   const tbodySelector = document.querySelector("tbody");
 
   const tableRow = document.createElement("tr");
   addClasses(tableRow, ["table-light"]);
   const td1 = document.createElement("td");
-  td1.textContent = taskValue.id; //taskValue.id
+  td1.textContent = object.id; 
   const td2 = document.createElement("td");
   addClasses(td2, "task");
-  td2.textContent = taskValue.task;
+  td2.textContent = object.task;
   const td3 = document.createElement("td");
-  td3.textContent = status[taskValue.status];
+  td3.textContent = taskStatus[object.status];
   const td4 = document.createElement("td");
   const deleteButton = createButton("button", ["btn", "btn-danger"], " Удалить ");
   const finishButton = createButton("button", ["btn", "btn-success"], " Завершить ");

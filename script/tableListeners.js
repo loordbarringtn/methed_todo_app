@@ -1,10 +1,13 @@
 import { createTableRows } from "./createElements.js";
 import { setStorage } from "./localStorage.js";
 import { inputValue } from "./modalListeners.js";
+import { generateRandomId } from "./helper.js";
+
 const status = [
   'В процессе',
-  'Выполнено',
-]
+  'Выполнена',
+];
+
 const tableControll = () => {
   const saveButton = document.querySelector(".btn-primary");
   const taskInput = document.querySelector(".form-control");
@@ -26,14 +29,13 @@ const tableControll = () => {
     if (target === saveButton) {
       e.preventDefault();
       const taskValue = taskInput.value;
-      // createTableRows(taskValue);
+
       const data = {
-        id: Date.now(),
+        id: generateRandomId(),
         task: taskValue,
         status: 0,
       }
 
-      console.log(status[data.status]);
       setStorage(inputValue, data);
       createTableRows(data)
       taskInput.value = "";
