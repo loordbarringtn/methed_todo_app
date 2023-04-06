@@ -13,14 +13,22 @@ const setStorage = (key, object) => {
   localStorage.setItem(key, JSON.stringify(data));
 };
 
-const removeStorage = (key, phoneNumber) => {
+const removeStorage = (key, idToDelete) => {
   const data = getStorage(key);
-  const dataFiltered = data.filter((item) => item.phone != phoneNumber);
+  const dataFiltered = data.filter((item) => item.id != idToDelete);
   localStorage.setItem(key, JSON.stringify(dataFiltered));
 };
 
-export {
-  getStorage,
-  setStorage,
-  removeStorage,
-};
+const updateTaskStatus = (key, taskId, newStatus, taskStatusClassName, taskCompletedClassName) => {
+  const storageData = getStorage(key);
+  const arrayIndex = storageData.findIndex(task => task.id === taskId);
+  if (arrayIndex !== -1) {
+    storageData[arrayIndex].status = newStatus;
+    storageData[arrayIndex].taskStatusClassName = taskStatusClassName;
+    storageData[arrayIndex].taskCompletedClassName = taskCompletedClassName;
+
+    localStorage.setItem(key, JSON.stringify(storageData));
+  }
+}
+
+export { getStorage, setStorage, removeStorage, updateTaskStatus };

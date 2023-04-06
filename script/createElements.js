@@ -1,10 +1,5 @@
 
 const firstDiv = document.querySelector(".app-container");
-const taskStatus = [
-  'В процессе',
-  'Выполнена',
-];
-
 const status = ["В процессе", "Выполнено"];
 
 function addClasses(element, classes) {
@@ -90,14 +85,14 @@ const createTableRows = (object) => {
   const tbodySelector = document.querySelector("tbody");
 
   const tableRow = document.createElement("tr");
-  addClasses(tableRow, ["table-light"]);
+  addClasses(tableRow, object.taskStatusClassName);
   const td1 = document.createElement("td");
   td1.textContent = object.id; 
   const td2 = document.createElement("td");
-  addClasses(td2, "task");
+  addClasses(td2, object.taskCompletedClassName);
   td2.textContent = object.task;
   const td3 = document.createElement("td");
-  td3.textContent = taskStatus[object.status];
+  td3.textContent = status[object.status];
   const td4 = document.createElement("td");
   const deleteButton = createButton("button", ["btn", "btn-danger"], " Удалить ");
   const finishButton = createButton("button", ["btn", "btn-success"], " Завершить ");
@@ -109,10 +104,6 @@ const createTableRows = (object) => {
   return tableRow;
 };
 
-
-
-
-
 const render = () => {
   firstDiv.append(createHeader("Todo App"));
   firstDiv.append(createForm());
@@ -120,19 +111,13 @@ const render = () => {
   const tableWrapper = createTableWrapper();
   firstDiv.append(tableWrapper);
   tableWrapper.append(createTable());
-  
-  // tbodySelector.append(createTableRows());
-
 };
-
-
 
 const saveButton = document.querySelector(".btn-primary");
 const taskInput = document.querySelector(".form-control");
 
-export {render, saveButton, taskInput, createTableRows};
+export {render, saveButton, taskInput, createTableRows };
 
-// export {render};
 
 
 

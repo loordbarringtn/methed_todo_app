@@ -4,7 +4,7 @@ import { createTableRows } from "./createElements.js";
 
 const submButton = document.getElementById("modalSubmitBtn");
 const nameInput = document.getElementById("nameInput");
-let inputValue = null;
+let nameFromInput = null;
 
 const modalControll = () => {
   nameInput.addEventListener("input", (e) => {
@@ -20,10 +20,9 @@ const modalControll = () => {
     const target = e.target;
 
     if (target === submButton) {
-      inputValue = nameInput.value;
+      nameFromInput = nameInput.value;
       modalDiv.style.display = "none";
-      const dataFromLocalStorage = getStorage(inputValue);
-      console.log(dataFromLocalStorage)
+      const dataFromLocalStorage = getStorage(nameFromInput);
       dataFromLocalStorage.forEach((item) => {
         createTableRows(item);
       });
@@ -43,4 +42,4 @@ const modalControll = () => {
   });
 };
 
-export { modalControll, inputValue };
+export { modalControll, nameFromInput };

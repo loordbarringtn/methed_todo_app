@@ -1,18 +1,12 @@
 import { createTableRows } from "./createElements.js";
-import { setStorage } from "./localStorage.js";
-import { inputValue } from "./modalListeners.js";
+import { setStorage, removeStorage, updateTaskStatus } from "./localStorage.js";
+import { nameFromInput } from "./modalListeners.js";
 import { generateRandomId } from "./helper.js";
-
-const status = [
-  'В процессе',
-  'Выполнена',
-];
 
 const tableControll = () => {
   const saveButton = document.querySelector(".btn-primary");
   const taskInput = document.querySelector(".form-control");
   const clearButton = document.querySelector(".btn-warning");
-  const deleteButton = document.querySelectorAll(".btn-danger");
 
   document.querySelector(".app-container").addEventListener("click", (e) => {
     const target = e.target;
@@ -33,11 +27,13 @@ const tableControll = () => {
       const data = {
         id: generateRandomId(),
         task: taskValue,
+        taskStatusClassName: "table-light",
+        taskCompletedClassName: "task",
         status: 0,
-      }
+      };
 
-      setStorage(inputValue, data);
-      createTableRows(data)
+      setStorage(nameFromInput, data);
+      createTableRows(data);
       taskInput.value = "";
       saveButton.disabled = true;
     }
@@ -47,18 +43,26 @@ const tableControll = () => {
       taskInput.value = "";
     }
 
-    if (target === deleteButton) {
-      if (deleteButton === null) return;
-      deleteButton.forEach((button) => {
-        button.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.target.closest("tr").remove();
-        });
-      });
+    if (target.classList.contains("btn-danger")) {
+      const question = confirm("Вы уверены что хотите удалить задачу?");
+      if (question === true) {
+        const idRowToDelete = target
+          .closest("tr")
+          .querySelector("td:nth-child(1)").textContent;
+        removeStorage(nameFromInput, idRowToDelete);
+        target.closest("tr").remove();
+      }
     }
 
-    if (target.classList.contains("btn-danger")) {
-      target.closest("tr").remove();
+    if (target.classList.contains("btn-success")) {
+      const closestTr = target.closest("tr");
+      const idRowToUpdate = target.closest("tr").querySelector("td:nth-child(1)").textContent;
+      closestTr.setAttribute("class", "table-success");
+      closestTr
+        .querySelector("td:nth-child(2)")
+        .setAttribute("class", "text-decoration-line-through");
+      closestTr.querySelector("td:nth-child(3)").textContent = "Выполнено";  
+      updateTaskStatus(nameFromInput, idRowToUpdate, 1, "table-success", "text-decoration-line-through");  
     }
   });
 };

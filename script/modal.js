@@ -1,6 +1,5 @@
-import {render} from "./createElements.js";
-
 const modalDiv = document.createElement("div");
+
 modalDiv.setAttribute("class", "modal");
 modalDiv.setAttribute("id", "myModal");
 modalDiv.style.display = "none";
