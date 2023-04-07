@@ -1,13 +1,14 @@
 import { render } from "./createElements.js";
 import { showModal } from "./modal.js";
 import { modalControll } from "./modalListeners.js";
-import { tableControll } from "./tableListeners.js";
+import { toDoFormControll, toDoTableControll } from "./tableListeners.js";
 
 const start = () => {
   showModal();
   modalControll();
   render();
-  tableControll();
+  toDoFormControll();
+  toDoTableControll();
 };
 
 window.start = start;
